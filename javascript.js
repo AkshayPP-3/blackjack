@@ -4,8 +4,8 @@ let cards=[firstCard, secondCard]
 let sum = firstCard + secondCard
 let cardEl=document.getElementById("card-el")
 let sumEl=document.getElementById("sum-el")
-let hasBlackjack=false
-let isAlive=true
+let hasBlackjack=0
+let isAlive=1
 let msgEl=document.getElementById("msg")
 function getRandomNumber(){ 
     let randomNumber=Math.floor(Math.random() * 13) + 1
@@ -24,17 +24,17 @@ function startGame(){
      }
     else if(sum===21){
        message= "You've got Blackjack"   
-        hasBlackjack=true
+        hasBlackjack=1
         }
     else {
         message = "You're out of game!!!"
-        isAlive=false
+        isAlive=0
     }
     msg.innerText=message
 }
 
 function newCard(){
-    if(hasBlackjack===false && isAlive===true){
+    if(hasBlackjack===0 && isAlive===1){
         
     let card=getRandomNumber()
     sum+=card
@@ -42,5 +42,13 @@ function newCard(){
     startGame()
     
     }
-
+}
+function restartGame(){
+    firstCard = getRandomNumber()
+    secondCard = getRandomNumber()
+    cards=[firstCard, secondCard]
+    sum = firstCard + secondCard
+    hasBlackjack=0
+    isAlive=1
+    startGame()
 }
